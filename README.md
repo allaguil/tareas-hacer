@@ -10,3 +10,8 @@ You can run the application using any of these two terminal commands:
 El punto de inicio de mi Aplicación es:
 
 - `app.js`
+
+Trae las actualizaciones del repositorio remoto de Github y las actualiza con la rama local:
+
+- `git fetch --all`
+- `git pull`
