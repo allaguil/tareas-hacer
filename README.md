@@ -16,7 +16,7 @@ Trae las actualizaciones del repositorio remoto de Github y las actualiza con la
 - `git fetch --all`
 - `git pull`
 
-Subir nuevos cambios de archivos editados en la rama local al repositorio remoto de Github:
+Subir nuevos cambios de archivos editados de la rama local al repositorio remoto de Github:
 
 - `git add .`
 - `git commit -m "actualizacion en README file"`
