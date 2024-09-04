@@ -1,28 +1,35 @@
 import 'colors';
 import { inquirerMenu, pause, leerInput } from './helpers/inquirer.js';
 import { Tareas } from './models/tareas.js';
+import { guardarDB, leerDB } from './helpers/guardarArchivo.js';
 
 const main = async () => {
 
     let opt = '';
-    const tareas = new Tareas();
+    const tareas = new Tareas(); // instancia de las Tareas
+
+    const tareasDB = leerDB();
+
+    if (tareasDB) { // cargar tareas
+        tareas.cargarTareasFromArray( tareasDB );
+    }
 
     do {
-        opt = await inquirerMenu();
+        opt = await inquirerMenu(); // Imprimir el Menú y retorna la opcion seleccionada por el usuario
 
         switch (opt) {
             case '1':
-                // crear opcion
-                const desc = await leerInput('Descripción: ');
-                console.log(desc);
+                // Crear Opcion
+                const desc = await leerInput('Descripción:');
+                tareas.crearTarea(desc);
             break;
 
             case '2':
-                console.log( tareas._listado );
+                tareas.listadoCompleto();
             break;
         }
 
-
+        guardarDB( tareas.listadoArr );
 
 
         await pause();
@@ -31,10 +38,3 @@ const main = async () => {
 }
 
 main();
-
-
-//const tareas = new Tareas(); //{}
-//const tarea = new Tarea('Percepcion de la realidad!');
-//tareas._listado[tarea.id] = tarea;
-//console.log(tareas);
-// La manera en que lo estamos manejando es una forma similar a como se trabaja en Bases de Datos no relacionales como Firebase o MongoDB
